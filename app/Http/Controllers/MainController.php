@@ -17,7 +17,7 @@ class MainController extends Controller
     public function category(Category $category) {
         $categories = Category::all();
         $news = $category->news;
-        return view('main_views.category', ['categories' => $categories, 'news' => $news]);
+        return view('main_views.category', ['category' => $category, 'categories' => $categories, 'news' => $news]);
     }
 
     public function search() {

@@ -1,4 +1,9 @@
 @extends('includes.html_structure')
+
+@section('title')
+نمایش اخبار مربوط به دسته بندی: {{ $category->category_name }}
+@endsection
+
 @section('content')
     <br>
     <div class="container">
