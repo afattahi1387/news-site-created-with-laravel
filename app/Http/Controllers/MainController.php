@@ -14,6 +14,12 @@ class MainController extends Controller
         return view('main_views.home', ['categories' => $categories, 'news' => $news]);
     }
 
+    public function category(Category $category) {
+        $categories = Category::all();
+        $news = $category->news;
+        return view('main_views.category', ['categories' => $categories, 'news' => $news]);
+    }
+
     public function single_news(News $news) {
         $categories = Category::all();
         return view('main_views.single_news', ['categories' => $categories, 'news' => $news]);

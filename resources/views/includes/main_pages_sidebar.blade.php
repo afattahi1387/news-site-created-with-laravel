@@ -16,7 +16,7 @@
             <div class="row">
                 <ul class="list-unstyled mb-0">
                     @foreach ($categories as $category)
-                        <li><a href="#!" style="text-decoration: none;">{{ $category->category_name }}</a></li>
+                        <li><a href="{{ route('category', ['category' => $category->id]) }}" style="text-decoration: none;">{{ $category->category_name }}</a></li>
                     @endforeach
                 </ul>
             </div>
