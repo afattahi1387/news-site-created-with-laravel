@@ -15,4 +15,6 @@ Route::get('/', 'MainController@home')->name('home');
 
 Route::get('/category/{category}', 'MainController@category')->name('category');
 
+Route::get('/search', 'MainController@search')->name('search');
+
 Route::get('/single-news/{news}', 'MainController@single_news')->name('single.news');
