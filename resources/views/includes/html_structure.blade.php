@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>@section('title'){{ env('APP_NAME') }}@show</title>
         <!-- Favicon-->
-        <link rel="icon" href="{{ asset('images/icons/' . env('APP_ICON')) }}" />
+        <link rel="icon" href="/images/icons/@section('icon'){{ env('APP_ICON') }}@show" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
         <style>
