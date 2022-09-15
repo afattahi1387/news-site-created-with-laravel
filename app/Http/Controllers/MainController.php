@@ -13,4 +13,9 @@ class MainController extends Controller
         $news = News::orderBy('id', 'DESC')->paginate(5);
         return view('main_views.home', ['categories' => $categories, 'news' => $news]);
     }
+
+    public function single_news(News $news) {
+        $categories = Category::all();
+        return view('main_views.single_news', ['categories' => $categories, 'news' => $news]);
+    }
 }

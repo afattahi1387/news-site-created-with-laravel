@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'MainController@home')->name('home');
+
+Route::get('/single-news/{news}', 'MainController@single_news')->name('single.news');
