@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,6 +12,7 @@ class DashboardController extends Controller
     }
 
     public function dashboard() {
-        return view('dashboard.dashboard');
+        $categories = Category::orderBy('id', 'DESC')->get();
+        return view('dashboard.dashboard', ['categories' => $categories]);
     }
 }
