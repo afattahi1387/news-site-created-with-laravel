@@ -20,3 +20,5 @@ Route::get('/search', 'MainController@search')->name('search');
 Route::get('/single-news/{news}', 'MainController@single_news')->name('single.news');
 
 Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');

@@ -5,7 +5,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 @if(Auth::check())
-                    <li class="nav-item"><a href="#" class="nav-link">داشبورد</a></li>
+                    <li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">داشبورد</a></li>
                     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout_form').submit();" class="nav-link">خروج</a></li>
                     <form action="{{ route('logout') }}" method="POST" id="logout_form">
                         {{ csrf_field() }}
