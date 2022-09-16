@@ -22,3 +22,5 @@ Route::get('/single-news/{news}', 'MainController@single_news')->name('single.ne
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+
+Route::delete('/delete-category/{category}', 'DashboardController@delete_category')->name('delete.category');
