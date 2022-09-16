@@ -7,6 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>{{ env('APP_NAME') }} | ورود</title>
+        <link rel="icon" href="{{ asset('images/icons/login.png') }}">
         <link href="{{ asset('css/styles2.css') }}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
