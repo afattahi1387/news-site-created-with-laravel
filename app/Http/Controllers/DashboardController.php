@@ -23,6 +23,10 @@ class DashboardController extends Controller
         return $flashed_messages;
     }
 
+    public function set_flash_message($type, $message) {
+        session()->put('flash_' . $type, $message);
+    }
+
     public function dashboard() {
         $categories = Category::orderBy('id', 'DESC')->get();
         return view('dashboard.dashboard', ['categories' => $categories, 'flashed_messages' => self::get_flashed_messages()]);
@@ -34,7 +38,7 @@ class DashboardController extends Controller
         }
 
         $category->delete();
-        session()->put('flash_success', 'دسته بندی شما با موفقیت حذف شد.');
+        self::set_flash_message('success', 'دسته بندی شما با موفقیت حذف شد.');
         return redirect()->route('dashboard');
     }
 
@@ -43,7 +47,7 @@ class DashboardController extends Controller
             'category_name' => $request->category_name
         ]);
 
-        session()->put('flash_success', 'دسته بندی شما با موفقیت اضافه شد.');
+        self::set_flash_message('success', 'دسته بندی شما با موفقیت اضافه شد.');
         return redirect()->route('dashboard');
     }
 }
