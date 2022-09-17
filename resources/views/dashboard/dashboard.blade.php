@@ -14,13 +14,17 @@
                                 <i class="fa fa-edit"></i>
                                 ویرایش دسته بندی
                             </div>
-                            <div class="card-body">
-                                <form action="{{ route('edit.category', ['category' => $category_for_edit['id']]) }}" method="POST" style="direction: rtl;">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="_method" value="put">
-                                    <input type="text" name="category_name" placeholder="نام دسته بندی" value="{{ $category_for_edit['category_name'] }}" class="form-control"><br>
-                                    <input type="submit" value="ویرایش" class="btn btn-warning" style="color: white;">
-                                </form>
+                            <div class="card-body" style="direction: rtl;">
+                                @if(isset($_GET['edit-category']) && !empty($_GET['edit-category']))
+                                    <form action="{{ route('edit.category', ['category' => $category_for_edit['id']]) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="_method" value="put">
+                                        <input type="text" name="category_name" placeholder="نام دسته بندی" value="{{ $category_for_edit['category_name'] }}" class="form-control"><br>
+                                        <input type="submit" value="ویرایش" class="btn btn-warning" style="color: white;">
+                                    </form>
+                                @else
+                                    <span class="text-danger">فرم ویرایش دسته بندی غیر فعال است. برای ویرایش یک دسته بندی، روی دکمه "ویرایش" در جدول زیر کلیک کنید.</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -30,12 +34,16 @@
                                 <i class="fa fa-plus"></i>
                                 افزودن دسته بندی
                             </div>
-                            <div class="card-body">
-                                <form action="{{ route('add.category') }}" method="POST" style="direction: rtl;">
-                                    {{ csrf_field() }}
-                                    <input type="text" name="category_name" placeholder="نام دسته بندی" class="form-control"><br>
-                                    <input type="submit" value="افزودن" class="btn btn-success">
-                                </form>
+                            <div class="card-body" style="direction: rtl;">
+                                @if(isset($_GET['edit-category']) && !empty($_GET['edit-category']))
+                                    <span class="text-danger">فرم افزودن دسته بندی غیر فعال است؛ چون صفحه در وضعیت ویرایش دسته بندی قرار دارد.</span>
+                                @else
+                                    <form action="{{ route('add.category') }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="text" name="category_name" placeholder="نام دسته بندی" class="form-control"><br>
+                                        <input type="submit" value="افزودن" class="btn btn-success">
+                                    </form>
+                                @endif
                             </div>
                         </div>
                     </div>
