@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\News;
 use App\Http\Requests\AddAndEditCategoryRequest;
 use Illuminate\Http\Request;
 
@@ -65,5 +66,11 @@ class DashboardController extends Controller
 
         self::set_flash_message('success', 'دسته بندی مورد نظر شما با موفقیت ویرایش شد.');
         return redirect()->route('dashboard');
+    }
+
+    public function news() {
+        $news = News::orderBy('id', 'DESC')->get();
+        $flashed_messages = self::get_flashed_messages();
+        return view('dashboard.news', ['news' => $news, 'flashed_messages' => $flashed_messages]);
     }
 }
