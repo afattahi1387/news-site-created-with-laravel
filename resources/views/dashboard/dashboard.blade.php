@@ -7,6 +7,9 @@
                 @foreach ($flashed_messages as $message)
                     <div class="alert alert-{{ $message[0] }}" style="direction: rtl;">{{ $message[1] }}</div>
                 @endforeach
+                @if($errors->has('category_name'))
+                    <div class="alert alert-danger" style="direction: rtl;">{{ $errors->first('category_name') }}</div>
+                @endif
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="card mb-4">
