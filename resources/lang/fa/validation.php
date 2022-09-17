@@ -10,7 +10,8 @@ return [
     ],
 
     'attributes' => [
-        'password' => 'رمز عبور'
+        'password' => 'رمز عبور',
+        'category_name' => 'نام دسته بندی'
     ],
 
 ];
