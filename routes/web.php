@@ -24,3 +24,5 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
 
 Route::delete('/delete-category/{category}', 'DashboardController@delete_category')->name('delete.category');
+
+Route::post('/add-category', 'DashboardController@add_category')->name('add.category');

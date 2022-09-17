@@ -23,7 +23,13 @@
                                 <i class="fa fa-plus"></i>
                                 افزودن دسته بندی
                             </div>
-                            <div class="card-body"></div>
+                            <div class="card-body">
+                                <form action="{{ route('add.category') }}" method="POST" style="direction: rtl;">
+                                    {{ csrf_field() }}
+                                    <input type="text" name="category_name" placeholder="نام دسته بندی" class="form-control"><br>
+                                    <input type="submit" value="افزودن" class="btn btn-success">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

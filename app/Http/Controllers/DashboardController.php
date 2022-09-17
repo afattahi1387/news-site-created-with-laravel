@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\AddAndEditCategoryRequest;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -34,6 +35,15 @@ class DashboardController extends Controller
 
         $category->delete();
         session()->put('flash_success', 'دسته بندی شما با موفقیت حذف شد.');
+        return redirect()->route('dashboard');
+    }
+
+    public function add_category(AddAndEditCategoryRequest $request) {
+        Category::insert([
+            'category_name' => $request->category_name
+        ]);
+
+        session()->put('flash_success', 'دسته بندی شما با موفقیت اضافه شد.');
         return redirect()->route('dashboard');
     }
 }
