@@ -29,7 +29,14 @@ class DashboardController extends Controller
 
     public function dashboard() {
         $categories = Category::orderBy('id', 'DESC')->get();
-        return view('dashboard.dashboard', ['categories' => $categories, 'flashed_messages' => self::get_flashed_messages()]);
+
+        if(isset($_GET['edit-category']) && !empty($_GET['edit-category'])) {
+            $category_for_edit = Category::find($_GET['edit-category']);
+        } else {
+            $category_for_edit = ['id' => 0, 'category_name' => ''];
+        }
+
+        return view('dashboard.dashboard', ['categories' => $categories, 'flashed_messages' => self::get_flashed_messages(), 'category_for_edit' => $category_for_edit]);
     }
 
     public function delete_category(Category $category) {
@@ -48,6 +55,15 @@ class DashboardController extends Controller
         ]);
 
         self::set_flash_message('success', 'دسته بندی شما با موفقیت اضافه شد.');
+        return redirect()->route('dashboard');
+    }
+
+    public function edit_category(Category $category, AddAndEditCategoryRequest $request) {
+        $category->update([
+            'category_name' => $request->category_name
+        ]);
+
+        self::set_flash_message('success', 'دسته بندی مورد نظر شما با موفقیت ویرایش شد.');
         return redirect()->route('dashboard');
     }
 }

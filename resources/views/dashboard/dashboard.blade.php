@@ -14,7 +14,14 @@
                                 <i class="fa fa-edit"></i>
                                 ویرایش دسته بندی
                             </div>
-                            <div class="card-body"></div>
+                            <div class="card-body">
+                                <form action="{{ route('edit.category', ['category' => $category_for_edit['id']]) }}" method="POST" style="direction: rtl;">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="put">
+                                    <input type="text" name="category_name" placeholder="نام دسته بندی" value="{{ $category_for_edit['category_name'] }}" class="form-control"><br>
+                                    <input type="submit" value="ویرایش" class="btn btn-warning" style="color: white;">
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-6">
@@ -57,7 +64,7 @@
                                         <td>{{ $category->category_name }}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="#" class="btn btn-warning" style="color: white; margin-right: 3px;">ویرایش</a>
+                                                <a href="{{ route('dashboard') }}?edit-category={{ $category->id }}" class="btn btn-warning" style="color: white; margin-right: 3px;">ویرایش</a>
                                                 @if($category->allow_for_delete())
                                                     <form action="{{ route('delete.category', ['category' => $category->id]) }}" method="POST">
                                                         {{ csrf_field() }}
