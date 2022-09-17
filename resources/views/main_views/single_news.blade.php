@@ -20,7 +20,7 @@
                     <!-- Preview image figure-->
                     <figure class="mb-4"><img class="img-fluid rounded" src="{{ asset('images/news_images/' . $news->image) }}" alt="تصویری به نمایش در نیامد." /></figure>
                     <!-- Post content-->
-                    <div style="background-color: rgb(234, 234, 240); padding: 7px;">{{ $news->short_description }}</div><br>
+                    <div style="background-color: rgb(234, 234, 240); padding: 7px; border: none; border-radius: 5px;">{{ $news->short_description }}</div><br>
                     <div>{{ $news->long_description }}</div><br>
                 </article>
                 <!-- Comments section-->
