@@ -30,3 +30,5 @@ Route::post('/add-category', 'DashboardController@add_category')->name('add.cate
 Route::put('/edit-category/{category}', 'DashboardController@edit_category')->name('edit.category');
 
 Route::get('/news', 'DashboardController@news')->name('dashboard.news');
+
+Route::delete('/delete-news/{news}', 'DashboardController@delete_news')->name('delete.news');

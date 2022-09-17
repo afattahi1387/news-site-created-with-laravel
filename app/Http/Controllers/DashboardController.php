@@ -73,4 +73,10 @@ class DashboardController extends Controller
         $flashed_messages = self::get_flashed_messages();
         return view('dashboard.news', ['news' => $news, 'flashed_messages' => $flashed_messages]);
     }
+
+    public function delete_news(News $news) {
+        $news->delete();
+        self::set_flash_message('success', 'خبر شما به سطل زباله منتقل شد.');
+        return redirect()->route('dashboard.news');
+    }
 }
