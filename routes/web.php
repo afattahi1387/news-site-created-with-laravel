@@ -33,4 +33,8 @@ Route::prefix('panel')->group(function() {
     Route::get('/news', 'DashboardController@news')->name('dashboard.news');
 
     Route::delete('/delete-news/{news}', 'DashboardController@delete_news')->name('delete.news');
+
+    Route::get('/add-news', 'DashboardController@add_news')->name('add.news.form');
+
+    Route::post('/create-news', 'DashboardController@create_news')->name('create.news');
 });

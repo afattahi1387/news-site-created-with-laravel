@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\News;
 use App\Http\Requests\AddAndEditCategoryRequest;
+use App\Http\Requests\AddAndEditNewsRequest;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -78,5 +79,22 @@ class DashboardController extends Controller
         $news->delete();
         self::set_flash_message('success', 'خبر شما به سطل زباله منتقل شد.');
         return redirect()->route('dashboard.news');
+    }
+
+    public function add_news() {
+        $categories = Category::orderBy('id', 'DESC')->get();
+        return view('dashboard.add_news_form', ['categories' => $categories]);
+    }
+
+    public function create_news(AddAndEditNewsRequest $request) {
+        News::create([
+            'name' => $request->name,
+            'image' => '',
+            'category_id' => $request->category_id,
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description
+        ]);
+
+        dd('OK'); // Todo: change
     }
 }

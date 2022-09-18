@@ -7,6 +7,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     داشبورد
                 </a>
+                <a class="nav-link" href="{{ route('add.news.form') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-plus"></i></div>
+                    افزودن خبر
+                </a>
                 <a class="nav-link" href="{{ route('dashboard.news') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
                     اخبار
