@@ -23,12 +23,14 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
 
-Route::delete('/delete-category/{category}', 'DashboardController@delete_category')->name('delete.category');
+Route::prefix('panel')->group(function() {
+    Route::delete('/delete-category/{category}', 'DashboardController@delete_category')->name('delete.category');
 
-Route::post('/add-category', 'DashboardController@add_category')->name('add.category');
+    Route::post('/add-category', 'DashboardController@add_category')->name('add.category');
 
-Route::put('/edit-category/{category}', 'DashboardController@edit_category')->name('edit.category');
+    Route::put('/edit-category/{category}', 'DashboardController@edit_category')->name('edit.category');
 
-Route::get('/news', 'DashboardController@news')->name('dashboard.news');
+    Route::get('/news', 'DashboardController@news')->name('dashboard.news');
 
-Route::delete('/delete-news/{news}', 'DashboardController@delete_news')->name('delete.news');
+    Route::delete('/delete-news/{news}', 'DashboardController@delete_news')->name('delete.news');
+});
