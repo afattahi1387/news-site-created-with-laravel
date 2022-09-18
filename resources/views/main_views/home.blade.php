@@ -14,7 +14,7 @@
                                 <div class="card-body">
                                     <div class="small text-muted">دسته بندی: {{ $on_news->category->category_name }}</div>
                                     <h2 class="card-title h4">{{ $on_news->name }}</h2>
-                                    <p class="card-text">{{ $on_news->short_description }}</p>
+                                    <p class="card-text">{!! $on_news->short_description !!}</p>
                                     <a class="btn btn-primary" href="{{ route('single.news', ['news' => $on_news->id]) }}">مشاهده خبر →</a>
                                 </div>
                             </div>
