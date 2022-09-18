@@ -17,6 +17,9 @@
                         آپلود تصویر برای خبر: {{ $news->name }}
                     </div>
                     <div class="card-body" style="direction: rtl;">
+                        @if($errors->has('image'))
+                            <div class="alert alert-danger">{{ $errors->first('image') }}</div>
+                        @endif
                         <form action="{{ route('insert.image.for.news', ['news' => $news->id]) }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="mb-3">
