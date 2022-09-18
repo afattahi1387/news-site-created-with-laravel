@@ -6,6 +6,7 @@ use App\Category;
 use App\News;
 use App\Http\Requests\AddAndEditCategoryRequest;
 use App\Http\Requests\AddAndEditNewsRequest;
+use App\Http\Requests\UploadNewsImageRequest;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -87,7 +88,7 @@ class DashboardController extends Controller
     }
 
     public function create_news(AddAndEditNewsRequest $request) {
-        News::create([
+        $new_news = News::create([
             'name' => $request->name,
             'image' => '',
             'category_id' => $request->category_id,
@@ -95,6 +96,25 @@ class DashboardController extends Controller
             'long_description' => $request->long_description
         ]);
 
-        dd('OK'); // Todo: change
+        return redirect()->route('upload.image.for.news', ['news' => $new_news->id]);
+    }
+
+    public function upload_image_for_news(News $news) {
+        return view('dashboard.upload_image_for_news', ['news' => $news]);
+    }
+
+    public function insert_image_for_news(News $news, UploadNewsImageRequest $request) {
+        $imagePath = $request->image->path();
+        $imageName = $request->image->getClientOriginalName();
+        $imageNewName = $news->id . '_' . $imageName;
+        move_uploaded_file($imagePath, 'uploads/' . $imageName);
+        rename('uploads/' . $imageName, 'uploads/' . $imageNewName);
+        copy('uploads/' . $imageNewName, 'images/news_images/' . $imageNewName);
+        unlink('uploads/' . $imageNewName);
+        $news->update([
+            'image' => $imageNewName
+        ]);
+
+        return redirect()->route('single.news', ['news' => $news->id]);
     }
 }

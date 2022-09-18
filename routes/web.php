@@ -37,4 +37,8 @@ Route::prefix('panel')->group(function() {
     Route::get('/add-news', 'DashboardController@add_news')->name('add.news.form');
 
     Route::post('/create-news', 'DashboardController@create_news')->name('create.news');
+
+    Route::get('/upload-image-for-news/{news}', 'DashboardController@upload_image_for_news')->name('upload.image.for.news');
+
+    Route::post('/insert-image-for-news/{news}', 'DashboardController@insert_image_for_news')->name('insert.image.for.news');
 });
