@@ -161,4 +161,14 @@ class DashboardController extends Controller
         self::set_flash_message('success', 'خبر شما با موفقیت به سطل زباله منتقل شد.');
         return redirect()->route('trash');
     }
+
+    public function recovery($news) {
+        $news = News::onlyTrashed()->find($news);
+        $image = $news->image;
+        copy('images/trash_images/' . $image, 'images/news_images/' . $image);
+        unlink('images/trash_images/' . $image);
+        $news->restore();
+        self::set_flash_message('success', 'خبر شما با موفقیت بازیابی شد.');
+        return redirect()->route('dashboard.news');
+    }
 }

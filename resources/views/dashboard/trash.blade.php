@@ -39,7 +39,9 @@
                                             <img src="/images/trash_images/{{ $on_news->image }}" alt="تصویری به نمایش در نیامد." style="width: 300px; border-radius: 5px;">
                                         </td>
                                         <td>
-                                            salam
+                                            <div class="d-flex">
+                                                <a href="{{ route('recovery', ['news' => $on_news->id]) }}" class="btn btn-success">بازیابی</a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

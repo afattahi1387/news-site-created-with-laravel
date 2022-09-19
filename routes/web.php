@@ -49,4 +49,6 @@ Route::prefix('panel')->group(function() {
     Route::get('/trash', 'DashboardController@trash')->name('trash');
 
     Route::delete('/move-to-trash/{news}', 'DashboardController@move_to_trash')->name('move.to.trash');
+
+    Route::get('/recovery/{news}', 'DashboardController@recovery')->name('recovery');
 });
