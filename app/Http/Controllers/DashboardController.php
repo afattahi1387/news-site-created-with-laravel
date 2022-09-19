@@ -147,4 +147,9 @@ class DashboardController extends Controller
 
         return redirect()->route('single.news', ['news' => $news->id]);
     }
+
+    public function trash() {
+        $news = News::orderBy('id', 'DESC')->onlyTrashed()->get();
+        return view('dashboard.trash', ['news' => $news, 'flashed_messages' => self::get_flashed_messages()]);
+    }
 }
