@@ -18,7 +18,12 @@
                         <div class="text-muted fst-italic mb-2">دسته بندی: {{ $news->category->category_name }}</div>
                     </header>
                     <!-- Preview image figure-->
-                    <figure class="mb-4"><img class="img-fluid rounded" src="{{ asset('images/news_images/' . $news->image) }}" alt="تصویری به نمایش در نیامد." /></figure>
+                    <figure class="mb-4">
+                        <img class="img-fluid rounded" src="{{ asset('images/news_images/' . $news->image) }}" alt="تصویری به نمایش در نیامد." />
+                        @if(Auth::check())
+                            <br><br><a href="{{ route('edit.news', ['news' => $news->id]) }}" class="btn btn-warning" style="color: white;">ویرایش</a>
+                        @endif
+                    </figure>
                     <!-- Post content-->
                     <div style="background-color: rgb(234, 234, 240); padding: 7px; border: none; border-radius: 5px;">{!! $news->short_description !!}</div><br>
                     <div>{!! $news->long_description !!}</div><br>

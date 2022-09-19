@@ -41,7 +41,7 @@
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{ route('single.news', ['news' => $on_news->id]) }}" target="_blank" class="btn btn-primary" style="margin-right: 3px;">مشاهده</a>
-                                                <a href="#" class="btn btn-warning" style="color: white; margin-right: 3px;">ویرایش</a>
+                                                <a href="{{ route('edit.news', ['news' => $on_news->id]) }}" class="btn btn-warning" style="color: white; margin-right: 3px;">ویرایش</a>
                                                 <form action="{{ route('delete.news', ['news' => $on_news->id]) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="_method" value="delete">

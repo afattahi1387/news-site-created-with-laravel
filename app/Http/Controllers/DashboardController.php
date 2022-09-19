@@ -117,4 +117,34 @@ class DashboardController extends Controller
 
         return redirect()->route('single.news', ['news' => $news->id]);
     }
+
+    public function edit_news(News $news) {
+        $categories = Category::orderBy('id', 'DESC')->get();
+        return view('dashboard.edit_news_form', ['categories' => $categories, 'news' => $news]);
+    }
+
+    public function update_news(News $news, AddAndEditNewsRequest $request) {
+        if(!empty($request->new_image)) {
+            $imagePath = $request->new_image->path();
+            $imageName = $request->new_image->getClientOriginalName();
+            $imageNewName = $news->id . '_' . $imageName;
+            move_uploaded_file($imagePath, 'uploads/' . $imageName);
+            rename('uploads/' . $imageName, 'uploads/' . $imageNewName);
+            unlink('images/news_images/' . $news->image);
+            copy('uploads/' . $imageNewName, 'images/news_images/' . $imageNewName);
+            unlink('uploads/' . $imageNewName);
+        } else {
+            $imageNewName = $news->image;
+        }
+
+        $news->update([
+            'name' => $request->name,
+            'image' => $imageNewName,
+            'category_id' => $request->category_id,
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description
+        ]);
+
+        return redirect()->route('single.news', ['news' => $news->id]);
+    }
 }
