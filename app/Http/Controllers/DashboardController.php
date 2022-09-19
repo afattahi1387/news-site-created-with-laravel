@@ -152,4 +152,13 @@ class DashboardController extends Controller
         $news = News::orderBy('id', 'DESC')->onlyTrashed()->get();
         return view('dashboard.trash', ['news' => $news, 'flashed_messages' => self::get_flashed_messages()]);
     }
+
+    public function move_to_trash(News $news) {
+        $image = $news->image;
+        copy('images/news_images/' . $image, 'images/trash_images/' . $image);
+        unlink('images/news_images/' . $image);
+        $news->delete();
+        self::set_flash_message('success', 'خبر شما با موفقیت به سطل زباله منتقل شد.');
+        return redirect()->route('trash');
+    }
 }

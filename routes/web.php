@@ -47,4 +47,6 @@ Route::prefix('panel')->group(function() {
     Route::put('/update-news/{news}', 'DashboardController@update_news')->name('update.news');
 
     Route::get('/trash', 'DashboardController@trash')->name('trash');
+
+    Route::delete('/move-to-trash/{news}', 'DashboardController@move_to_trash')->name('move.to.trash');
 });
