@@ -47,10 +47,10 @@
                                                     <input type="hidden" name="_method" value="delete">
                                                     <button class="btn btn-danger" style="margin-right: 3px;" onclick="if(confirm('آیا از انتقال این خبر به سطل زباله مطمئن هستید؟')){return true;}else{return false;}">انتقال به سطل زباله</button>
                                                 </form>
-                                                <form action="" method="POST">
+                                                <form action="{{ route('delete.news', ['news' => $on_news->id]) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="_method" value="delete">
-                                                    <button class="btn btn-danger">حذف کامل</button>
+                                                    <button class="btn btn-danger" onclick="if(confirm('آیا از حذف کامل این خبر مطمئن هستید؟')){return true;}else{return false;}">حذف کامل</button>
                                                 </form>
                                             </div>
                                         </td>

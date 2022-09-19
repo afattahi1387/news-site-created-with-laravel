@@ -32,8 +32,6 @@ Route::prefix('panel')->group(function() {
 
     Route::get('/news', 'DashboardController@news')->name('dashboard.news');
 
-    Route::delete('/delete-news/{news}', 'DashboardController@delete_news')->name('delete.news');
-
     Route::get('/add-news', 'DashboardController@add_news')->name('add.news.form');
 
     Route::post('/create-news', 'DashboardController@create_news')->name('create.news');
@@ -51,4 +49,6 @@ Route::prefix('panel')->group(function() {
     Route::delete('/move-to-trash/{news}', 'DashboardController@move_to_trash')->name('move.to.trash');
 
     Route::get('/recovery/{news}', 'DashboardController@recovery')->name('recovery');
+
+    Route::delete('/delete-news/{news}', 'DashboardController@delete_news')->name('delete.news');
 });

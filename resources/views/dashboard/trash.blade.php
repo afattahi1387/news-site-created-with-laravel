@@ -40,7 +40,12 @@
                                         </td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('recovery', ['news' => $on_news->id]) }}" class="btn btn-success">بازیابی</a>
+                                                <a href="{{ route('recovery', ['news' => $on_news->id]) }}" class="btn btn-success" style="margin-right: 3px;">بازیابی</a>
+                                                <form action="{{ route('delete.news', ['news' => $on_news->id]) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="delete">
+                                                    <button class="btn btn-danger" onclick="if(confirm('آیا از حذف کامل این خبر مطمئن هستید؟')){return true;}else{return false;}">حذف</button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

@@ -76,12 +76,6 @@ class DashboardController extends Controller
         return view('dashboard.news', ['news' => $news, 'flashed_messages' => $flashed_messages]);
     }
 
-    public function delete_news(News $news) {
-        $news->delete();
-        self::set_flash_message('success', 'خبر شما به سطل زباله منتقل شد.');
-        return redirect()->route('dashboard.news');
-    }
-
     public function add_news() {
         $categories = Category::orderBy('id', 'DESC')->get();
         return view('dashboard.add_news_form', ['categories' => $categories]);
@@ -170,5 +164,25 @@ class DashboardController extends Controller
         $news->restore();
         self::set_flash_message('success', 'خبر شما با موفقیت بازیابی شد.');
         return redirect()->route('dashboard.news');
+    }
+
+    public function delete_news($news) {
+        $news_row = News::find($news);
+        if(empty($news_row)) {
+            $news_row = News::onlyTrashed()->find($news);
+        }
+
+        if(empty($news_row->deleted_at)) {
+            $image_url = 'images/news_images/' . $news_row->image;
+            $redirect_url = 'dashboard.news';
+        } else {
+            $image_url = 'images/trash_images/' . $news_row->image;
+            $redirect_url = 'trash';
+        }
+
+        unlink($image_url);
+        $news_row->forceDelete();
+        self::set_flash_message('success', 'خبر شما با موفقیت حذف شد.');
+        return redirect()->route($redirect_url);
     }
 }
