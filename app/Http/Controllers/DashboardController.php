@@ -188,7 +188,16 @@ class DashboardController extends Controller
     }
 
     public function messages() {
-        $messages = Message::orderBy('id', 'DESC')->get();
+        $messages = Message::where('viewed', null)->orWhere('viewed', 0)->orderBy('id', 'DESC')->get();
         return view('dashboard.messages', ['flashed_messages' => self::get_flashed_messages(), 'messages' => $messages]);
+    }
+
+    public function set_viewed_for_message(Message $message) {
+        $message->update([
+            'viewed' => 1
+        ]);
+
+        self::set_flash_message('success', 'درخواست دیده شدن پیام با موفقیت انجام شد.');
+        return redirect()->route('dashboard.messages');
     }
 }

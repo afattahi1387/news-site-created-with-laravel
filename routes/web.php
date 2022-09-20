@@ -57,4 +57,6 @@ Route::prefix('panel')->group(function() {
     Route::delete('/delete-news/{news}', 'DashboardController@delete_news')->name('delete.news');
 
     Route::get('/messages', 'DashboardController@messages')->name('dashboard.messages');
+
+    Route::get('/set-viewed-for-message/{message}', 'DashboardController@set_viewed_for_message')->name('set.viewed.for.message');
 });
