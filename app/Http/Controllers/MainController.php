@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\News;
+use App\User;
+use App\Message;
+use App\Category;
 use Illuminate\Http\Request;
+use App\Notifications\ReceivesMessage;
+use App\Http\Requests\ContactUsRequest;
+use Illuminate\Support\Facades\Notification;
 
 class MainController extends Controller
 {
@@ -33,5 +38,25 @@ class MainController extends Controller
     public function single_news(News $news) {
         $categories = Category::all();
         return view('main_views.single_news', ['categories' => $categories, 'news' => $news]);
+    }
+
+    public function contact_us() {
+        return view('main_views.contact-us');
+    }
+
+    public function post_contact_us(ContactUsRequest $request) {
+        Message::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message
+        ]);
+
+        $admins = User::all();
+        foreach($admins as $admin) {
+            Notification::send($admin, new ReceivesMessage($request->name));
+        }
+
+        echo "<script>alert('پیام شما با موفقیت ثبت شد.');</script>";
+        echo "<script>window.location.href='" . env('APP_URL') . "';</script>";
     }
 }
