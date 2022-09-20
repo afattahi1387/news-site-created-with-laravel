@@ -15,6 +15,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
                     اخبار
                 </a>
+                <a class="nav-link" href="{{ route('dashboard.messages') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-message"></i></div>
+                    پیام های دریافت شده
+                </a>
                 <a class="nav-link" href="{{ route('trash') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-trash"></i></div>
                     سطل زباله

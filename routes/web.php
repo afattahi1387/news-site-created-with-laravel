@@ -55,4 +55,6 @@ Route::prefix('panel')->group(function() {
     Route::get('/recovery/{news}', 'DashboardController@recovery')->name('recovery');
 
     Route::delete('/delete-news/{news}', 'DashboardController@delete_news')->name('delete.news');
+
+    Route::get('/messages', 'DashboardController@messages')->name('dashboard.messages');
 });

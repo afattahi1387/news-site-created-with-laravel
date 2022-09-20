@@ -7,6 +7,7 @@ use App\News;
 use App\Http\Requests\AddAndEditCategoryRequest;
 use App\Http\Requests\AddAndEditNewsRequest;
 use App\Http\Requests\UploadNewsImageRequest;
+use App\Message;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -184,5 +185,10 @@ class DashboardController extends Controller
         $news_row->forceDelete();
         self::set_flash_message('success', 'خبر شما با موفقیت حذف شد.');
         return redirect()->route($redirect_url);
+    }
+
+    public function messages() {
+        $messages = Message::orderBy('id', 'DESC')->get();
+        return view('dashboard.messages', ['flashed_messages' => self::get_flashed_messages(), 'messages' => $messages]);
     }
 }
