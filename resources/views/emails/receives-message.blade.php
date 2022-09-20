@@ -5,7 +5,7 @@
 
 برای مشاهده پیام های دریافت شده روی دکمه زیر کلیک کنید:
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => env('APP_URL') . '/panel/messages'])
 مشاهده پیام های دریافت شده
 @endcomponent
 
