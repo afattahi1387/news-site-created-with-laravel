@@ -5,6 +5,7 @@ this is a news site by persian language created with laravel.
 این یک سایت خبری به زبان فارسی است که با لاراول ساخته شده است.
 
 [GitHub Link](https://github.com/afattahi1387/news-site-created-with-laravel)
+
 [GitLab Link](https://gitlab.com/laravel-projects14/news-site-created-with-laravel)
 
 ## Initial Setup
