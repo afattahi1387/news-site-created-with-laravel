@@ -38,7 +38,7 @@
                                         <td>{!! $message->message !!}</td>
                                         <td>
                                             <a href="{{ route('set.viewed.for.message', ['message' => $message->id]) }}" class="btn btn-success">مشاهده شد</a>
-                                            <a href="#" class="btn btn-primary">پاسخ دادن</a>
+                                            <a href="{{ route('answer.to.message', ['message' => $message->id]) }}" class="btn btn-primary">پاسخ دادن</a>
                                         </td>
                                     </tr>
                                 @endforeach

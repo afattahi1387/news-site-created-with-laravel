@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\News;
-use App\Http\Requests\AddAndEditCategoryRequest;
-use App\Http\Requests\AddAndEditNewsRequest;
-use App\Http\Requests\UploadNewsImageRequest;
 use App\Message;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\AddAndEditNewsRequest;
+use App\Http\Requests\AnswerToMessageRequest;
+use App\Http\Requests\UploadNewsImageRequest;
+use App\Http\Requests\AddAndEditCategoryRequest;
+use App\Mail\AnswerToMessage;
 
 class DashboardController extends Controller
 {
@@ -198,6 +201,22 @@ class DashboardController extends Controller
         ]);
 
         self::set_flash_message('success', 'درخواست دیده شدن پیام با موفقیت انجام شد.');
+        return redirect()->route('dashboard.messages');
+    }
+
+    public function answer_to_message(Message $message) {
+        return view('dashboard.answer_to_message', ['message' => $message]);
+    }
+
+    public function post_answer_for_message(Message $message, AnswerToMessageRequest $request) {
+        $message->update([
+            'viewed' => 1,
+            'answer' => $request->answer
+        ]);
+
+        Mail::send(new AnswerToMessage($message->email, $message, $request->answer));
+
+        self::set_flash_message('success', 'پاسخ شما با موفقیت ارسال شد.');
         return redirect()->route('dashboard.messages');
     }
 }

@@ -59,4 +59,8 @@ Route::prefix('panel')->group(function() {
     Route::get('/messages', 'DashboardController@messages')->name('dashboard.messages');
 
     Route::get('/set-viewed-for-message/{message}', 'DashboardController@set_viewed_for_message')->name('set.viewed.for.message');
+
+    Route::get('/answer-to-message/{message}', 'DashboardController@answer_to_message')->name('answer.to.message');
+
+    Route::post('/post-answer-for-message/{message}', 'DashboardController@post_answer_for_message')->name('post.answer.for.message');
 });
