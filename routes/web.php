@@ -19,6 +19,10 @@ Route::get('/search', 'MainController@search')->name('search');
 
 Route::get('/single-news/{news}', 'MainController@single_news')->name('single.news');
 
+Route::get('/contact-us', 'MainController@contact_us')->name('contact.us');
+
+Route::post('/post-contact-us', 'MainController@post_contact_us')->name('post.contact.us');
+
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');

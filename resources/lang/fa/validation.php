@@ -16,7 +16,9 @@ return [
         'image' => 'تصویر',
         'category_id', 'دسته بندی',
         'short_description' => 'معرفی خبر',
-        'long_description' => 'متن خبر'
+        'long_description' => 'متن خبر',
+        'email' => 'ایمیل',
+        'message' => 'پیام'
     ],
 
 ];

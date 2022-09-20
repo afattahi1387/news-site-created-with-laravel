@@ -13,6 +13,7 @@
                 @else
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ورود</a></li>
                 @endif
+                <li class="nav-item"><a class="nav-link" href="{{ route('contact.us') }}">تماس با ما</a></li>
             </ul>
         </div>
     </div>
